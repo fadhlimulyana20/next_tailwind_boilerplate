@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react'
+import React, { ButtonHTMLAttributes, ReactNode } from 'react'
 
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: ReactNode;
   size?: 'sm' | 'lg';
@@ -11,11 +11,12 @@ interface Props {
 
 const Button: React.FC<Props> = (
   { 
-    className= 'font-bold rounded', 
+    className, 
     children, 
     size= 'lg',
     variant= 'fill',
-    onClick= (e) => e.preventDefault(), 
+    onClick= (e) => e.preventDefault(),
+    type 
   }
 ) => {
   // Button Size
@@ -33,10 +34,10 @@ const Button: React.FC<Props> = (
   let classVariant: string;
   switch (variant) {
     case 'fill':
-      classVariant = 'bg-blue-500 hover:bg-blue-700 text-white'
+      classVariant = 'bg-blue-600 hover:bg-blue-700 text-white'
       break;
     case 'outline':
-      classVariant = 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent';
+      classVariant = 'bg-transparent hover:bg-blue-600 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent';
       break;
     default:
       classVariant = 'bg-transparent hover:bg-gray-100';
@@ -44,7 +45,7 @@ const Button: React.FC<Props> = (
   }
 
   return (
-    <button className={`${classVariant} ${classSize} ${className}`} onClick={onClick}>
+    <button type={ type } className={`font-bold rounded focus:outline-none focus:ring-2 ${classVariant} ${classSize} ${className}`} onClick={onClick}>
       {children}
     </button>
   )

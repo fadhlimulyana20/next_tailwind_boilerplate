@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/dist/client/router'
 import React, { ReactNode, useState } from 'react'
 import { Dropdown, DropdownBody } from '../dropdown'
+import { OutsideAction } from '../wrapper/outsideDivClick'
 
 interface Props {
   name?: string
@@ -26,11 +27,13 @@ const NavLinkDropdown: React.FC<Props> = ({ name, children }) => {
         <span>{ name }</span>
         <FontAwesomeIcon className="ml-2 text-xs" icon={ faChevronDown } />
       </a>
-      <Dropdown show ={ showDropdown }>
-        <DropdownBody>
-          { children }
-        </DropdownBody>
-      </Dropdown>
+      <OutsideAction callback={ () => setShowDropdown(false) }>
+        <Dropdown show ={ showDropdown }>
+          <DropdownBody>
+            { children }
+          </DropdownBody>
+        </Dropdown>
+      </OutsideAction>
     </div>
   )
 }

@@ -21,6 +21,10 @@ const menuItem = [
   {
     url: '/dashboard',
     text: 'Dashboard',
+  },
+  {
+    url: '/login',
+    text: 'Login'
   }
 ]
 
@@ -31,7 +35,7 @@ const Navbar: React.FC<Props> = ({ title= 'Navbar' }) => {
 
   return (
     <>
-    <div className="flex flex-wrap items-center justify-between bg-white lg:py-4 py-3 lg:px-10 px-3">
+    <div className="flex flex-wrap fixed w-full items-center justify-between bg-white lg:py-4 py-3 lg:px-10 px-3">
       <div>
         <h1 className="text-xl font-medium">{ title }</h1>
       </div>

@@ -6,9 +6,12 @@ interface Props {
   children?: ReactNode,
   title?: string,
   backgroundColor?: string
+  withPaddingTop?: boolean
 }
 
-const MainLayout: React.FC<Props> = ({ children, title= 'This is default title', backgroundColor= 'bg-gray-100' }) => {
+const MainLayout: React.FC<Props> = ({ children, title= 'This is default title', backgroundColor= 'bg-gray-100', withPaddingTop= true }) => {
+  const paddingClass = withPaddingTop ? 'pt-16' : ''
+
   return (
     <div className={`min-h-screen ${backgroundColor}`}>
       {/* Head Section */}
@@ -20,7 +23,7 @@ const MainLayout: React.FC<Props> = ({ children, title= 'This is default title',
 
       {/* Body section */}
       <Navbar />
-      <div className="container md:px-10 px-2 py-5 mx-auto">
+      <div className={`container md:px-10 px-5 mx-auto ${paddingClass}`}>
         {children}
       </div>
     </div>
